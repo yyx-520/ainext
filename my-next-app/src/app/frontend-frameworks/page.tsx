@@ -17,7 +17,8 @@ export default function FrontendFrameworks() {
             1、js框架库，ui层面的解决方案
             2、jsx语法、单向数据绑定、声明式编程、组件化编程（Component）、虚拟dom
                a、声明式编程： 只在乎做什么，不在乎步骤，根据逻辑来声明组件；
-               b、component： 页面中每个部分都是一个component，接收数据，返回要展示的dom。分为类组件和函数组件；
+               b、component： 页面中每个部分都是一个component，接收数据，返回要展示的dom。分为类组件和函数组件。组件的特点：可复用、可组合、可维护；
+            3、优势：灵活、声明式简单、组件化复用程度高、单向数据流更快更安全
         </p>
             <pre className="bg-gray-100 p-4 rounded mt-2 w-screen">
           {`function App() {
