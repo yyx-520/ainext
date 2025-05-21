@@ -142,6 +142,77 @@ var twoSum = function(nums, target) {
             </pre>
           </div>
         </li>
+        <li className="flex items-start gap-2">
+          <div className="shrink-0">5.</div>
+          <div className="flex-1">
+            <p className="font-medium">树</p>
+            <p className="text-sm text-gray-600">解决一下二叉树的常见问题。</p>
+            <pre className="bg-gray-100 p-4 rounded mt-2 w-screen">
+            {`// 前序遍历
+export const preOrderTraversal = (root: any) => {
+    if (!root) return;
+    console.log(root.val); // 访问根节点
+    preOrderTraversal(root.left); // 访问左子树
+    preOrderTraversal(root.right); // 访问右子树
+}
+// 中序遍历
+export const inOrderTraversal = (root: any) => {
+    if (!root) return;
+    inOrderTraversal(root.left); // 访问左子树
+    console.log(root.val); // 访问根节点
+    inOrderTraversal(root.right); // 访问右子树
+}
+// 后序遍历
+export const postOrderTraversal = (root: any) => {
+    if (!root) return;
+    postOrderTraversal(root.left); // 访问左子树
+    postOrderTraversal(root.right); // 访问右子树
+    console.log(root.val); // 访问根节点
+}
+// 广度遍历
+export const leverOrderTraversal = (root: any) => {
+    if (!root) return;
+    const queue = [root];
+    while(queue.length > 0) {
+        const node = queue.shift();
+        console.log(node.val); // 打印根节点
+        if (node.left) queue.push(node.left); // 移入左子树
+        if (node.right) queue.push(node.right); // 移入右子树
+    }
+}`}
+            </pre>
+            <p className="text-sm text-gray-600">给你一个二叉树的根节点 root ，判断其是否是一个有效的二叉搜索树。</p>
+            <pre className="bg-gray-100 p-4 rounded mt-2 w-screen">
+              {`export const isValidBST = function(root: object): boolean {
+    // 定义一个辅助函数，使用中序遍历
+    const helper = (node: any, lower: number | null, upper: number | null): boolean => {
+        if (!node) return true; // 空节点是有效的
+
+        const val = node.val;
+
+        // 检查当前节点值是否在有效范围内
+        if ((lower !== null && val <= lower) || (upper !== null && val >= upper)) {
+            return false;
+        }
+
+        // 递归检查右子树，更新下界
+        if (!helper(node.right, val, upper)) {
+            return false;
+        }
+
+        // 递归检查左子树，更新上界
+        if (!helper(node.left, lower, val)) {
+            return false;
+        }
+
+        return true;
+    };
+
+    return helper(root, null, null); // 初始范围为无限制
+};`}
+            </pre>
+          </div>
+        </li>
       </ol>
     </div>
   );
