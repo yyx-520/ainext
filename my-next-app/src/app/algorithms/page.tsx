@@ -113,7 +113,22 @@ var maxProfit = function(prices) {
           <div className="shrink-0">4.</div>
           <div className="flex-1">
             <p className="font-medium">数组</p>
-            <p className="text-sm text-gray-600">数组类问题常见于一些交集、并集问题。</p>
+            <p className="text-sm text-gray-600">数组类问题常见于一些交集、并集问题。
+              根据题目特点，判断问题属于以下哪种类型：
+              数组问题:
+              是否需要遍历、排序、查找或修改？
+              是否有特定的顺序要求（如非递减、相对顺序）？
+              树问题:
+              是否需要遍历（前序、中序、后序、层序）？
+              是否需要递归或迭代？
+              动态规划问题:
+              是否有子问题的重复计算？
+              是否可以通过状态转移方程解决？
+              哈希表问题:
+              是否需要快速查找或统计频率？
+              二分查找问题:
+              是否有排序数组或时间复杂度要求为 O(log n)？
+            </p>
             <p className="text-sm text-gray-600">给定一个整数数组 nums 和一个整数目标值 target，请你在该数组中找出 和为目标值 target  的那 两个 整数，并返回它们的数组下标。你可以假设每种输入只会对应一个答案，并且你不能使用两次相同的元素。你可以按任意顺序返回答案。</p>
             <pre className="bg-gray-100 p-4 rounded mt-2 w-screen">
               {`
@@ -139,6 +154,55 @@ var twoSum = function(nums, target) {
     return aindex
 };
               `}
+            </pre>
+            <p className="text-sm text-gray-600">定一个数组 nums，编写一个函数将所有 0 移动到数组的末尾，同时保持非零元素的相对顺序。请注意 ，必须在不复制数组的情况下原地对数组进行操作。</p>
+            <pre className="bg-gray-100 p-4 rounded mt-2 w-screen">
+              {`export const moveZeroes = function(nums) {
+    // 双指针方法
+    //     let nonZeroIndex = 0;
+    // for (let i = 0; i < nums.length; i++) {
+    //     if (nums[i] !== 0) {
+    //         [nums[nonZeroIndex], nums[i]] = [nums[i], nums[nonZeroIndex]];
+    //         nonZeroIndex++;
+    //     }
+    // }
+    let count = nums.length;
+    let index = 0;
+    while(count > 0) {
+        const element = nums[index];
+        if (element === 0) {
+            nums.splice(index, 1);
+            nums.push(element);
+        } else {
+            index++;
+        }
+        count--;
+    }
+    // nums.forEach((element, index) => {
+    //     if (element === 0) {
+    //         nums.splice(index, 1);
+    //         nums.push(element);
+    //     }
+    // });
+};`}
+            </pre>
+            <p className="text-sm text-gray-600">给你一个整数数组 nums 和一个整数 k ，请你统计并返回 该数组中和为 k 的子数组的个数 。子数组是数组中元素的连续非空序列。</p>
+            <pre className="bg-gray-100 p-4 rounded mt-2 w-screen">
+              {`export const subarraySum = function(nums, k) {
+    // 使用前缀和哈希来解决
+    let count = 0;
+    let sum = 0;
+    const map = new Map();
+    map.set(0, 1); // 默认值必须带上
+    for (let i = 0;i<nums.length; i++) {
+        sum += nums[i];
+        if (map.has(sum - k)) {
+            count += map.get(sum - k);
+        }
+        map.set(sum, map.get(sum) + 1 || 1);
+    }
+    return count;
+};`}
             </pre>
           </div>
         </li>

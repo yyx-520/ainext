@@ -8,6 +8,7 @@ export default function Home() {
     { name: "构建打包学习", path: "/build-tools" },
     { name: "算法学习", path: "/algorithms" },
     { name: "AI学习", path: "/ai-learning" },
+    { name: "练习题", path: "/exercises" }, // 新增练习题模块路径
   ];
 
   return (
