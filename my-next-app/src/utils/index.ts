@@ -324,3 +324,86 @@ export const throttle = (fn: Function, delay: number) => {
         }
     }
 };
+
+// 假设你正在爬楼梯。需要 n 阶你才能到达楼顶。
+
+// 每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬到楼顶呢？
+
+ 
+
+// 示例 1：
+
+// 输入：n = 2
+// 输出：2
+// 解释：有两种方法可以爬到楼顶。
+// 1. 1 阶 + 1 阶
+// 2. 2 阶
+// 示例 2：
+
+// 输入：n = 3
+// 输出：3
+// 解释：有三种方法可以爬到楼顶。
+// 1. 1 阶 + 1 阶 + 1 阶
+// 2. 1 阶 + 2 阶
+// 3. 2 阶 + 1 阶
+ 
+
+// 提示：
+
+// 1 <= n <= 45
+/**
+ * @param {number} n
+ * @return {number}
+ */
+export const climbStairs = function(n) {
+    let dp = new Array(n + 1).fill(0);
+    dp[1] = 1;
+    dp[2] = 2;
+    for (let i = 3; i <= n; i++) {
+        dp[i] = dp[i - 1] + dp[i - 2];
+    }
+    return dp[n];
+};
+
+// 给定一个二叉树 root ，返回其最大深度。
+
+// 二叉树的 最大深度 是指从根节点到最远叶子节点的最长路径上的节点数。
+
+// 示例 1：
+
+// 输入：root = [3,9,20,null,null,15,7]
+// 输出：3
+// 示例 2：
+
+// 输入：root = [1,null,2]
+// 输出：2
+ 
+
+// 提示：
+
+// 树中节点的数量在 [0, 104] 区间内。
+// -100 <= Node.val <= 100
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+export const maxDepth = function(root: any) {
+    let length = 0;
+    // dfs，前序遍历
+    const helper = (node: any, depth: number) => {
+        if (!node) return
+        length = Math.max(length, depth);
+        helper(node.left, depth + 1);
+        helper(node.right, depth + 1);
+    }
+    helper(root, 1);
+    return length;
+};
