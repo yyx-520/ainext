@@ -70,6 +70,15 @@ module.exports = {
 }
 `,
     },
+    {
+      question: "如何减少项目里的if-else",
+      answer:  `表驱动法：使用一个数组或者对象，以对象为key，然后处理函数是value，然后用查key对应的value来代替的if语句；用switch-case来代替if-else`,
+    },
+    {
+      question: "如何实现预览 PDF文件",
+      answer:  `1、使用浏览器内置的pdf查看器，其实直接就是a标签，<a href='xxx.pdf' target='_blank'> js: window.open('xxx.pdf', '_blank') 2、其他复杂操作：使用Mozila的PDF.js（设置viewport、设置canvas，渲染）来生成pdf预览器。 3
+      使用第三方服务，谷歌的iframe，直接塞入ulr即可，但是需要注意数据安全问题。`,
+    },
   ];
 
   return (
