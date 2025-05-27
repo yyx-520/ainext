@@ -436,5 +436,28 @@ export const maxDepth = function(root: any) {
  * @return {number[][]}
  */
 export const permute = function(nums) {
-    
+    const result: number[][] = [];
+    const backtrack = (path: number[], used: boolean[]) => {
+        if (path.length === nums.length) {
+            result.push([...path]); // 添加当前路径到结果
+            return;
+        }
+        for (let i = 0; i < nums.length; i++) {
+            if (used[i]) continue; // 跳过已使用的数字
+            path.push(nums[i]); // 添加当前数字到路径
+            used[i] = true; // 标记当前数字为已使用
+            backtrack(path, used); // 递归处理剩余数字
+            path.pop(); // 回溯，移除当前数字
+            used[i] = false; // 取消标记
+        }
+    };
+    backtrack([], new Array(nums.length).fill(false)); // 初始化路径和使用标记
+    return result;
 };
+
+// 输入：nums = [1,2,3]
+// 输出：[[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]输出
+
+// [[1,2,3],[2,1,3],[3,2,1],[1,3,2]]
+// 预期结果
+// [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]

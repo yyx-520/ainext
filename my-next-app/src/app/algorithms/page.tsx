@@ -204,6 +204,32 @@ var twoSum = function(nums, target) {
     return count;
 };`}
             </pre>
+            <p className="text-sm text-gray-600">二分法</p>
+            <pre className="bg-gray-100 p-4 rounded mt-2 w-screen">
+              {`/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number}
+ */
+var searchInsert = function(nums, target) {
+    let left = 0;
+    let right = nums.length;
+    let middle = 0;
+    while(left<right) {
+        console.log(middle, left, right)
+        middle = Math.floor((left + right) / 2);
+        if (nums[middle] > target) {
+             right = middle
+        } else if (nums[middle] < target) {
+             left = middle + 1
+        } else {
+            return middle
+        }
+    }
+     console.log(middle, left, right)
+    return left
+};`}
+            </pre>
           </div>
         </li>
         <li className="flex items-start gap-2">
@@ -273,6 +299,50 @@ export const leverOrderTraversal = (root: any) => {
     };
 
     return helper(root, null, null); // 初始范围为无限制
+};`}
+            </pre>
+          </div>
+        </li>
+                <li className="flex items-start gap-2">
+          <div className="shrink-0">6.</div>
+          <div className="flex-1">
+            <p className="font-medium">回溯算法</p>
+            <p className="text-sm text-gray-600">数组类问题常见于一些交集、并集问题。
+              根据题目特点，判断问题属于以下哪种类型：
+              数组问题:
+              是否需要遍历、排序、查找或修改？
+              是否有特定的顺序要求（如非递减、相对顺序）？
+              树问题:
+              是否需要遍历（前序、中序、后序、层序）？
+              是否需要递归或迭代？
+              动态规划问题:
+              是否有子问题的重复计算？
+              是否可以通过状态转移方程解决？
+              哈希表问题:
+              是否需要快速查找或统计频率？
+              二分查找问题:
+              是否有排序数组或时间复杂度要求为 O(log n)？
+            </p>
+            <p className="text-sm text-gray-600">给定一个不含重复数字的数组 nums ，返回其 所有可能的全排列 。你可以 按任意顺序 返回答案。</p>
+            <pre className="bg-gray-100 p-4 rounded mt-2 w-screen">
+              {`export const permute = function(nums) {
+    const result: number[][] = [];
+    const backtrack = (path: number[], used: boolean[]) => {
+        if (path.length === nums.length) {
+            result.push([...path]); // 添加当前路径到结果
+            return;
+        }
+        for (let i = 0; i < nums.length; i++) {
+            if (used[i]) continue; // 跳过已使用的数字
+            path.push(nums[i]); // 添加当前数字到路径
+            used[i] = true; // 标记当前数字为已使用
+            backtrack(path, used); // 递归处理剩余数字
+            path.pop(); // 回溯，移除当前数字
+            used[i] = false; // 取消标记
+        }
+    };
+    backtrack([], new Array(nums.length).fill(false)); // 初始化路径和使用标记
+    return result;
 };`}
             </pre>
           </div>

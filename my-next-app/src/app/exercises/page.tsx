@@ -20,6 +20,11 @@ export default function Exercises() {
   );
 }
   const exercises = [
+        {
+      question: "简历点学习",
+      answer:  `1、低代码平台： 公司底层服务（cdn、数据库、监控系统、CI/CD 系统、其他底层能力） -> c端服务（组装服务（页面发布打包组件umd，同步数据；访问获取html模版，分期、js拼接、gloabaldata，渲染）、ssr服务、搭建服务、路由服务（人群、定向）、网关服务） -> 搭建系统（权限管理、页面管理、物料系统（开发规范、基础组件、cli）、拖拽事件处理、组件dsl协议（json字符串，key value形式）、实时预览（iframe嵌入打包后的页面，postmeeage更新，umd成果实时挂载（webpack打包配置为umd格式））、管理后台、数据中心、监控大盘（mm端、c端）） -> 业务 -> 容器环境（app、h5、小程度、多端，native）
+      2、ai相关(next搭建前端+node链接ai的应用，公司ai通用解决方案平台，工作流里面集合tools、mcp、rag等)然后背后使用大模型     3、稳定性相关（结合ai、sentry、Prometheus）：指标上报规范（异常指标、自定义指标、行囊指标（上报规范）、大盘口径定义、告警配置（多种策略提供））    4、工程化性能优化：（懒加载在容器中判断屏幕高度，然后加载哪个js；性能优化分析；enlight容器预加载）`,
+    },
     {
       question: "请 求 失 败 会 弹 出 一 个 toast , 如 何 保 证 批 量 请 求 失 败 , 只 弹出 一个toast",
       answer:  `要 确 保 批 量 请 求 失 败 时 只 弹 出 一 个 toast, 可 以 通 过 以 下 几 种 方 式 实 现 :
