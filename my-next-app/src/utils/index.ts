@@ -522,3 +522,63 @@ export const minSubArrayLen = function(target, nums) {
      return result === Infinity ? 0 : result;
 };
 
+// 模拟生态题：. 螺旋矩阵 II 循环不变量
+/**
+ * @param {number} n
+ * @return {number[][]}
+ */
+/**
+ * @param {number} n
+ * @return {number[][]}
+ */
+export const generateMatrix = function(n) {
+    // let result = Array.from(n, ()=>Array(n).fill(0)
+    const result = Array.from({length: n}, () => Array(n).fill(0));
+    
+    let startx = 0 // 开始旋转位置
+    let starty = 0 // 开始旋转位置
+    let offset = 1 // 边界
+    let count = 1 // 要填的值
+    let i = 0 // 要填值的下标
+    let j = 0 // 要填值的下标
+    let circle = Math.floor( n / 2 ) // 循环次数
+    // 循环不变量
+    while(circle) {
+        // 第一条边
+        for(j = starty;j< n-offset;j++) {
+            result[startx][j] = count++
+        }
+        // 第二条边
+        for(i = startx;i< n-offset;i++) {
+             result[i][j] = count++
+        }
+        // 第三条边
+        for(;j> starty;j--) {
+            result[i][j] = count++
+        }
+         // 第四条边
+        for(;i>startx;i--) {
+            result[i][j] = count++
+        }
+        startx++
+        starty++
+        offset++
+        circle--
+    }
+    // console.log(i, j, n % 2, startx, starty )
+    if (n % 2) {
+        result[startx][starty] = count
+    }
+    return result
+}
+
+// 手写一个快排 n*logn
+export const quickSort = function(arr) {
+  if (arr.length <= 1) return arr;
+  const pivot = arr[0]; // 基准值
+  const left = arr.slice(1).filter(x=>x< pivot);
+  // 分割成小于基准值和大于等于基准值的两个数组
+  const right = arr.slice(1).filter(x => x >= pivot);
+  return [...quickSort(left), pivot, ...quickSort(right)];
+}
+
