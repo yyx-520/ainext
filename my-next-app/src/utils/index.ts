@@ -1,3 +1,17 @@
+// 基础数据结构
+// 数组：栈（单调）、队列、堆
+// 对象：哈希、链表
+// 字符串
+
+// 逻辑思维
+// 二叉树 、动态规划、图
+
+// 套路算法
+// 快排、贪心、分治、回溯、双指针（用的较多）、滑动窗口、二分查找、位运算
+
+
+
+// 动态规划
 /**
 import { maxProfit } from './index';
  * @param {number[]} prices
@@ -42,7 +56,91 @@ export const maxProfit = function (prices:  number[]) {
     // return maxProfit
 };
 
+// 假设你正在爬楼梯。需要 n 阶你才能到达楼顶。
 
+// 每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬到楼顶呢？
+
+ 
+
+// 示例 1：
+
+// 输入：n = 2
+// 输出：2
+// 解释：有两种方法可以爬到楼顶。
+// 1. 1 阶 + 1 阶
+// 2. 2 阶
+// 示例 2：
+
+// 输入：n = 3
+// 输出：3
+// 解释：有三种方法可以爬到楼顶。
+// 1. 1 阶 + 1 阶 + 1 阶
+// 2. 1 阶 + 2 阶
+// 3. 2 阶 + 1 阶
+ 
+
+// 提示：
+
+// 1 <= n <= 45
+/**
+ * @param {number} n
+ * @return {number}
+ */
+export const climbStairs = function(n) {
+    let dp = new Array(n + 1).fill(0);
+    dp[1] = 1;
+    dp[2] = 2;
+    for (let i = 3; i <= n; i++) {
+        dp[i] = dp[i - 1] + dp[i - 2];
+    }
+    return dp[n];
+};
+
+
+// 树
+
+// 给定一个二叉树 root ，返回其最大深度。
+
+// 二叉树的 最大深度 是指从根节点到最远叶子节点的最长路径上的节点数。
+
+// 示例 1：
+
+// 输入：root = [3,9,20,null,null,15,7]
+// 输出：3
+// 示例 2：
+
+// 输入：root = [1,null,2]
+// 输出：2
+ 
+
+// 提示：
+
+// 树中节点的数量在 [0, 104] 区间内。
+// -100 <= Node.val <= 100
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+export const maxDepth = function(root: any) {
+    let length = 0;
+    // dfs，前序遍历
+    const helper = (node: any, depth: number) => {
+        if (!node) return
+        length = Math.max(length, depth);
+        helper(node.left, depth + 1);
+        helper(node.right, depth + 1);
+    }
+    helper(root, 1);
+    return length;
+};
 
 // 给你一个二叉树的根节点 root ，判断其是否是一个有效的二叉搜索树。
 
@@ -138,6 +236,8 @@ export const isValidBST = function(root: object): boolean {
 
     return helper(root, null, null); // 初始范围为无限制
 };
+
+// 数组
 
 // 给你一个按照非递减顺序排列的整数数组 nums，和一个目标值 target。请你找出给定目标值在数组中的开始位置和结束位置。
 
@@ -325,89 +425,6 @@ export const throttle = (fn: Function, delay: number) => {
     }
 };
 
-// 假设你正在爬楼梯。需要 n 阶你才能到达楼顶。
-
-// 每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬到楼顶呢？
-
- 
-
-// 示例 1：
-
-// 输入：n = 2
-// 输出：2
-// 解释：有两种方法可以爬到楼顶。
-// 1. 1 阶 + 1 阶
-// 2. 2 阶
-// 示例 2：
-
-// 输入：n = 3
-// 输出：3
-// 解释：有三种方法可以爬到楼顶。
-// 1. 1 阶 + 1 阶 + 1 阶
-// 2. 1 阶 + 2 阶
-// 3. 2 阶 + 1 阶
- 
-
-// 提示：
-
-// 1 <= n <= 45
-/**
- * @param {number} n
- * @return {number}
- */
-export const climbStairs = function(n) {
-    let dp = new Array(n + 1).fill(0);
-    dp[1] = 1;
-    dp[2] = 2;
-    for (let i = 3; i <= n; i++) {
-        dp[i] = dp[i - 1] + dp[i - 2];
-    }
-    return dp[n];
-};
-
-// 给定一个二叉树 root ，返回其最大深度。
-
-// 二叉树的 最大深度 是指从根节点到最远叶子节点的最长路径上的节点数。
-
-// 示例 1：
-
-// 输入：root = [3,9,20,null,null,15,7]
-// 输出：3
-// 示例 2：
-
-// 输入：root = [1,null,2]
-// 输出：2
- 
-
-// 提示：
-
-// 树中节点的数量在 [0, 104] 区间内。
-// -100 <= Node.val <= 100
-/**
- * Definition for a binary tree node.
- * function TreeNode(val, left, right) {
- *     this.val = (val===undefined ? 0 : val)
- *     this.left = (left===undefined ? null : left)
- *     this.right = (right===undefined ? null : right)
- * }
- */
-/**
- * @param {TreeNode} root
- * @return {number}
- */
-export const maxDepth = function(root: any) {
-    let length = 0;
-    // dfs，前序遍历
-    const helper = (node: any, depth: number) => {
-        if (!node) return
-        length = Math.max(length, depth);
-        helper(node.left, depth + 1);
-        helper(node.right, depth + 1);
-    }
-    helper(root, 1);
-    return length;
-};
-
 // 给定一个不含重复数字的数组 nums ，返回其 所有可能的全排列 。你可以 按任意顺序 返回答案。
 
  
@@ -461,3 +478,47 @@ export const permute = function(nums) {
 // [[1,2,3],[2,1,3],[3,2,1],[1,3,2]]
 // 预期结果
 // [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
+
+// 双指针
+// 有序数组的平方安装升序排列
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+export const sortedSquares = function(nums) {
+    let result = Array.from(nums.length).fill(0)
+    let k = nums.length - 1
+    for(let i = 0,j=nums.length-1;i<=j;) {
+        if (nums[i]*nums[i] > nums[j]*nums[j]) {
+            result[k--] = nums[i]*nums[i]
+            i++;
+        } else {
+            result[k--] = nums[j]*nums[j]
+            j--;
+        }
+    } 
+    return result
+};
+
+// 滑动窗口：如何移动起始位置
+/**
+ * @param {number} target
+ * @param {number[]} nums
+ * @return {number}
+ */
+export const minSubArrayLen = function(target, nums) {
+    let result = Infinity
+    let subl = 0
+    let start = 0
+    let end = 0
+    for(end;end<nums.length;end++) {
+        subl += nums[end]
+        while(subl>=target) {
+           result = Math.min(result, end-start+1)
+           subl = subl - nums[start]
+           start++;
+        } 
+    }
+     return result === Infinity ? 0 : result;
+};
+

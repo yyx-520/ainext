@@ -20,7 +20,7 @@ export default function Exercises() {
   );
 }
   const exercises = [
-        {
+    {
       question: "简历点学习",
       answer:  `1、低代码平台： 公司底层服务（cdn、数据库、监控系统、CI/CD 系统、其他底层能力） -> c端服务（组装服务（页面发布打包组件umd，同步数据；访问获取html模版，分期、js拼接、gloabaldata，渲染）、ssr服务、搭建服务、路由服务（人群、定向）、网关服务） -> 搭建系统（权限管理、页面管理、物料系统（开发规范、基础组件、cli）、拖拽事件处理、组件dsl协议（json字符串，key value形式）、实时预览（iframe嵌入打包后的页面，postmeeage更新，umd成果实时挂载（webpack打包配置为umd格式））、管理后台、数据中心、监控大盘（mm端、c端）） -> 业务 -> 容器环境（app、h5、小程度、多端，native）
       2、ai相关(next搭建前端+node链接ai的应用，公司ai通用解决方案平台，工作流里面集合tools、mcp、rag等)然后背后使用大模型     3、稳定性相关（结合ai、sentry、Prometheus）：指标上报规范（异常指标、自定义指标、行囊指标（上报规范）、大盘口径定义、告警配置（多种策略提供））    4、工程化性能优化：（懒加载在容器中判断屏幕高度，然后加载哪个js；性能优化分析；enlight容器预加载）`,
@@ -83,6 +83,18 @@ module.exports = {
       question: "如何实现预览 PDF文件",
       answer:  `1、使用浏览器内置的pdf查看器，其实直接就是a标签，<a href='xxx.pdf' target='_blank'> js: window.open('xxx.pdf', '_blank') 2、其他复杂操作：使用Mozila的PDF.js（设置viewport、设置canvas，渲染）来生成pdf预览器。 3
       使用第三方服务，谷歌的iframe，直接塞入ulr即可，但是需要注意数据安全问题。`,
+    },
+    {
+      question: "手写webpack配置",
+      answer:  ``,
+    },
+    {
+      question: "手写js数组常用方法",
+      answer:  ``,
+    },
+    {
+      question: "手写vue或者reactdiff算法",
+      answer:  ``,
     },
   ];
 

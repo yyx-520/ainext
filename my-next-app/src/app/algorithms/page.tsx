@@ -113,7 +113,7 @@ var maxProfit = function(prices) {
           <div className="shrink-0">4.</div>
           <div className="flex-1">
             <p className="font-medium">数组</p>
-            <p className="text-sm text-gray-600">数组类问题常见于一些交集、并集问题。
+            <p className="text-sm text-gray-600">数组类问题常见于一些交集、并集问题。原地算法：联想双指针、滑动窗口、快慢指针等。结合哈希、前缀和。
               根据题目特点，判断问题属于以下哪种类型：
               数组问题:
               是否需要遍历、排序、查找或修改？
@@ -155,7 +155,8 @@ var twoSum = function(nums, target) {
 };
               `}
             </pre>
-            <p className="text-sm text-gray-600">定一个数组 nums，编写一个函数将所有 0 移动到数组的末尾，同时保持非零元素的相对顺序。请注意 ，必须在不复制数组的情况下原地对数组进行操作。</p>
+            <p className="text-sm text-gray-600">双指针：
+              定一个数组 nums，编写一个函数将所有 0 移动到数组的末尾，同时保持非零元素的相对顺序。请注意 ，必须在不复制数组的情况下原地对数组进行操作。</p>
             <pre className="bg-gray-100 p-4 rounded mt-2 w-screen">
               {`export const moveZeroes = function(nums) {
     // 双指针方法
@@ -228,6 +229,20 @@ var searchInsert = function(nums, target) {
     }
      console.log(middle, left, right)
     return left
+};`}
+            </pre>
+                        <p className="text-sm text-gray-600">位操作：找数组中唯一的元素，其他元素出现两次</p>
+            <pre className="bg-gray-100 p-4 rounded mt-2 w-screen">
+              {`/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var singleNumber = function(nums) {
+   let onlyone = 0;
+   nums.forEach(res=> {
+    onlyone = onlyone ^ res
+   })
+   return onlyone
 };`}
             </pre>
           </div>
