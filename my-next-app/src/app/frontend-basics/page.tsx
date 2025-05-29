@@ -55,6 +55,26 @@ export default function FrontendBasics() {
              obj.constructor === Object === Object.prototype.constructor
 `}
           </pre>
+          <p className="text-sm text-gray-600">闭包&作用域: 
+              1、闭包就是记住了它出生时的家，也就是作用域里面的变量。
+              2、函数作用域：函数内部定义的变量只能在函数内部访问，外部无法访问。
+              3、块级作用域：使用let和const定义的变量只能在块级作用域内访问，外部无法访问。
+              4、全局作用域：在全局作用域中定义的变量可以在任何地方访问。
+              5、闭包的作用：可以访问函数外部的变量，常用于数据封装和私有变量。
+          </p>
+          <p className="text-sm text-gray-600">var和let: 
+              1、var是函数作用域，let是块级作用域在最近的{}或[]内。
+              2、var可以重复声明，let不能重复声明
+              3、var提升（值不会提升，会是undefinde）和let定义的变量会提升到顶部，但是let不会初始化，使用let定义的变量在声明之前访问会报错。
+              4、var可以在声明前使用，let不可以。
+              5、let在循环中使用时，每次循环都会创建一个新的作用域。 
+          </p>
+          <p className="text-sm text-gray-600">数组、map、set、对象的区别:
+              1、数组（Array）：有序集合，可以通过索引访问元素，支持重复元素。
+              2、Map：键值对集合，键可以是任意类型，保持插入顺序，支持重复键。
+              3、Set：值的集合，保持插入顺序，不允许重复值。（不允许值重复）
+              4、对象（Object）：键值对集合，键是字符串或Symbol，支持嵌套和复杂数据结构。
+          </p>
           </div>
         </li>
         <li className="flex items-start gap-2">

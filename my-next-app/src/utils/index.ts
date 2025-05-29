@@ -582,3 +582,158 @@ export const quickSort = function(arr) {
   return [...quickSort(left), pivot, ...quickSort(right)];
 }
 
+// 链表
+// 移除节点
+// 虚拟头节点方法
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @param {number} val
+ * @return {ListNode}
+ */
+export const removeElements = function(head, val) {
+        let dummynode = {
+        val: 0,
+        next: head
+    }
+    let current = dummynode
+    while(current.next){
+      if (current.next.val === val) {
+        current.next = current.next.next
+      } else {
+        current = current.next
+      }
+    }
+    return dummynode.next
+};
+// 设计一个链表
+var MyLinkedList = function() {
+    this.dummynode = {
+        val: 0,
+        next: null
+    }
+    this.creatNode = function (val) {
+        return {
+            val: val,
+            next: null
+        }
+    }
+};
+
+/** 
+ * @param {number} index
+ * @return {number}
+ */
+MyLinkedList.prototype.get = function(index) {
+    var current = this.dummynode.next
+    while(index-- && current) {
+        current = current.next
+    }
+    return current ? current.val : -1
+};
+
+/** 
+ * @param {number} val
+ * @return {void}
+ */
+MyLinkedList.prototype.addAtHead = function(val) {
+    var newHead = this.creatNode(val)
+    newHead.next = this.dummynode.next
+    this.dummynode.next = newHead
+};
+
+/** 
+ * @param {number} val
+ * @return {void}
+ */
+MyLinkedList.prototype.addAtTail = function(val) {
+    var newTail = this.creatNode(val)
+    var current = this.dummynode
+    while(current.next !== null) {
+        current = current.next
+    }
+    current.next = newTail
+};
+
+/** 
+ * @param {number} index 
+ * @param {number} val
+ * @return {void}
+ */
+MyLinkedList.prototype.addAtIndex = function(index, val) {
+    var newNode = this.creatNode(val)
+    var current = this.dummynode
+    while(index-- && current) {
+       current = current.next
+    }
+    if (current) {
+        newNode.next = current.next
+        current.next = newNode
+    }
+};
+
+/** 
+ * @param {number} index
+ * @return {void}
+ */
+MyLinkedList.prototype.deleteAtIndex = function(index) {
+    var current = this.dummynode
+    while(index-- && current) {
+       current = current.next
+    }
+    if (current && current.next) {
+        current.next = current.next.next
+    }
+};
+
+/** 
+ * Your MyLinkedList object will be instantiated and called as such:
+ * var obj = new MyLinkedList()
+ * var param_1 = obj.get(index)
+ * obj.addAtHead(val)
+ * obj.addAtTail(val)
+ * obj.addAtIndex(index,val)
+ * obj.deleteAtIndex(index)
+ */
+
+// 反转链表
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+// 双指针法
+var reverseList = function(head) {
+       let pre = null
+   let cur = head 
+   while(cur) {
+     let temp = cur.next
+     cur.next = pre
+     pre = cur
+     cur = temp
+   }
+   return pre
+};
+
+
+// 哈希: 重复问题可以考虑到哈希
+// 字母异位词分组
+/**
+ * @param {string[]} strs
+ * @return {string[][]}
+ */
+var groupAnagrams = function(strs) {
+    
+};

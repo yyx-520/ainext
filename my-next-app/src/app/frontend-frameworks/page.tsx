@@ -19,6 +19,7 @@ export default function FrontendFrameworks() {
                a、声明式编程： 只在乎做什么，不在乎步骤，根据逻辑来声明组件；
                b、component： 页面中每个部分都是一个component，接收数据，返回要展示的dom。分为类组件和函数组件。组件的特点：可复用、可组合、可维护；
             3、优势：灵活、声明式简单、组件化复用程度高、单向数据流更快更安全
+            4、函数组件和 Hooks 让状态和逻辑都在函数作用域中（相当于hooks是定义在函数中，使用的是函数作用域，所以可以直接访问里面定义的变量，无须this）管理，无需 this，代码更简洁。
         </p>
             <pre className="bg-gray-100 p-4 rounded mt-2 w-screen">
           {`function App() {
