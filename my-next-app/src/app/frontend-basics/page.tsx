@@ -75,6 +75,13 @@ export default function FrontendBasics() {
               3、Set：值的集合，保持插入顺序，不允许重复值。（不允许值重复）
               4、对象（Object）：键值对集合，键是字符串或Symbol，支持嵌套和复杂数据结构。
           </p>
+            <p className="text-sm text-gray-600">数组寻找函数
+              是否存在：some
+              找第一个：find
+              找索引：findIndex
+              找所有：filter
+              Map.groupBy 是 ECMAScript 2023（ES14）引入的新静态方法，用于根据分组规则把数组分组，并返回一个 Map，key 是分组标识，value 是分组后的元素数组
+          </p>
           </div>
         </li>
         <li className="flex items-start gap-2">
