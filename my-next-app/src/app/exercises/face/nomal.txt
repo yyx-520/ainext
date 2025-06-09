@@ -1,0 +1,262 @@
+1、css:
+flex
+box-sizing: content-box border-box
+BFC 就是 CSS 里的 ‌「隔离结界」‌：
+关起门来做事‌ → 内部布局不影响外部
+‌挡住外来干扰‌ → 外部布局不影响内部 重叠 浮动元素造成高度塌陷 文字环绕图片
+.box { // flex overflow position
+  float: left;        /* 浮动元素 */   clear: both
+  overflow: hidden;   /* 常用！溢出隐藏 */
+  position: absolute; /* 绝对定位 */
+  display: inline-block; /* 行内块 */
+  display: flow-root; /* 最纯净的 BFC（推荐）*/
+  /* 其他：flex、grid、table-cell 等 */
+}
+z-index 的优先级最高
+水平局中：text-align: center margin 0 auto flex justify-content line-height: height 绝对定位
+link 同步 @import 最后
+预处理强，转为css
+动画：
+transition
+animation
+keyframes
+
+2、js
+this和箭头函数
+ call(targe, 1,2)，apply (targe,[1,2])， bind(tart)(1,2) ：强绑定 call和apply会立即执行
+ 变量声明提升：
+
+ es6
+ prototype object.__proto__  === Object.prototypes
+ let const  块级作用域
+
+ 执行上下文(EC) 理解为一个对象 变量对象 this 作用域（可分为 块级作用域 和
+函数作用域）
+ 变量对象( VO )
+作用域链(词法作用域)
+this 指向
+
+作用域链可以理解为⼀组对象列表， 包含 父级和自身的变量对
+象[[scope]]
+
+闭包属于⼀种特殊的作用域，称为 静态作用域  函数返回函数 函数作用域保留机制
+解决变量改变问题，变量可以通过 函数参数的形式 传⼊， 避免使用默认的 [[scope]] 向上查找
+块级作用域
+
+<script defer> : 异步加载，元素解析完成后执行 解析完成后再执行
+<script async> : 异步加载，但执行时会阻塞元素渲染 异步的，但是回来后立即执行
+
+
+
+
+深拷贝：JSON.parse(JSON.stringify(obj)) 或者最手动写一个递归，深度遍历
+
+new 对象 对象的__proto__ 到构造函数的prototpe 
+this绑定 返回新对象
+object。creat（object。protorete）
+result= consi。aaply（实例，args）
+ return result
+
+继承：使用 ES6 的语法糖 class / extends 该类的原型作为父类的实例
+
+/、% ：⼀律转换成数值后计算 除了+
+数字+字符串= 字符串 其他都是数字
+
+防抖/节流
+
+function debounce( fn, wait, immediate) {
+let timer = null
+return function() {
+let args = arguments
+let context = this
+if (immediate && !timer) {
+fn.apply(context, args)
+}
+if (timer) clearTimeout(timer)
+timer = setTimeout(() => {
+fn.apply(context, args)
+}, wait)
+}
+}
+timer
+
+谁调用函数，this就是谁
+
+async 、await Generator的语法糖 返回Promise
+function* helloWorld( ) {
+yield 'hello';
+yield 'world';
+return 'ending';
+}
+async => *
+await => yield
+
+ast:代码逐字母解析成 树状对象 的 构造数据结构
+形式
+
+AMD ， CMD ， CommonJs（copy ）， ES6 Module（值的引用）：
+
+babel：
+babylon 将 ES6/ES7 代码解析成 AST
+babel-traverse 对 AST 进行遍历转译，得到新的 AST
+新 AST 通过 babel-generator 转换成 ES5
+
+柯里化： 函数返回函数（预设几个参数）
+
+
+promise：{
+ 1、可以实现超时控制：Promise.race 看谁先执行完，返回谁  Promise.all()任一失败就返回是失败  Promise.allSettled()必须全部完成
+ 2、.then() 返回‌新Promise‌，可实现连续异步操作11
+无返回值时隐式传递 undefined
+3、每个错误只被最近的 .catch() 捕获
+4、
+
+} 协同：
+同步 微任务（Promise回调,） 宏任务（setTimeout, setInterval, I/O操作, UI渲染等）  以此循环
+eventloop： {
+
+
+}
+待补充
+
+
+3、html
+
+
+
+4、网络协议&浏览器
+跨域：都是为了搞定同源策略
+1、iframe：不受影响，沙盒 使用postMessage
+2、标签：html 不受同源策略影响 get请求
+3、cors：Access-Control-Allow-Origin Access-Control-Allow-Methods
+4、服务器代理
+
+ HTTP/1.1 无状态无连接： 对于事务处理没有记忆性 无状态就是客户端和服务器在某次会话中产生的数据不会保存下来
+通过增加 cookie 和 session 机制，
+
+http-cache http缓存：减少冗余数据、减少 减少服务器的压力 私有缓存（本地浏览器缓存） 代理缓存
+第一次：服务器返回响应头和内容，浏览器存起来。
+第二次：检查Cache-Control：过期时间是第⼀次请求的时间减去 Cache-Control 的值Expires
+no-cache不使用 no-store  max-age：从当前请求开始， 允许获取的响应被重用的最长时间 (秒) Expires max-age 优先级更高 
+进入缓存协商阶段：没有 Cache-Control 和 Expires
+Cache-Control 和 Expires 过期了
+Cache-Control 的属性设置为 no-cache 时
+
+通过：Last-Modified（响应头）/If-Modified-Since（请求头） 时间纬度
+ETag（响应头）/If-None-Match（请求头） 内容纬度 hash相关
+修改了返回200
+没有就返回304
+
+cookie 和 session（抽象概念：通常借助
+cookie 本身和后端存储实现的）
+cookie： 
+
+安全问题：
+XSS ：跨站脚本攻击  记住⼀点“所有用户输⼊都是不可信的”，所以得做输⼊过滤和转义
+
+CSRF（XSRF）：跨站请求伪造：CSRF 利用的是网站对用户网页浏览器的信任。验证码+token
+
+跨标签页通讯：运用⼀些可以 共享的中间介质
+
+通过postMessage
+
+同域下的 localStorage
+
+共享cookie
+
+浏览器架构：用户界面、主进程、内核（（渲染引擎、js引擎））、事件触发线程（消息对列：微任务、宏任务）、网络异步线程、定时器线程
+
+输入ulr到展示的过程：
+
+dns解析
+tcp三次握手
+发送请求
+服务器返回html
+浏览器渲染： html domtree css csstree  结合dom和cssrendertree
+laout 布局
+gpu绘制页面
+
+重绘（不影响布局，仅仅是样式）和回流（重新布局）：样式变化时，回流必定触发重绘， 重绘不⼀定触发回流 。重绘的开销较⼩， 回流的代价较
+高。
+性能优化：将动画效果应用到 position 属性为 absolute 或 fixed 的元素上
+js：避免频繁操作样式， 可汇总后统⼀ ⼀次修改、尽量用class进行样式修改、减小dom操作次数
+
+存储：
+1、短暂性（内存）、持久性
+浏览器：cookie（4k）过期时间、 ocalStorage / sessionStorage（4-5m） 
+
+web worker：多线程环境：同源限制
+无法使用 document / window / alert / confirm
+无法加载本地资源
+
+内存泄露：定时器: 未被正确关闭， 导致所引用的外部变量无法被释放、事件监听: 没有正确销毁 闭包 会导致父级中的变量无法被释放
+
+lighthouse：核心关注指标：lcp <=2.5s First Input Delay: <=100ms Cumulative Layout Shift(cls)  ≤ 0.1视觉稳定性 node执行：npm install -g lighthouse && lighthouse <url>
+
+网络：
+1、http1。0“ 无法复用链接， 完成即断开， 重新慢启动和 TCP 3 次握手
+2、 1.1:长连接(默认 keep-alive )， 复用 cashe缓存
+3、2.0多路复用 首部压缩
+4、 https: 较为安全的网络传输协议： 证书(公钥) SSL 加密 端口 443
+
+5、tcp：三次握手
+四次挥手
+滑动窗⼝: 流量控制
+拥塞处理
+慢开始
+拥塞避免
+快速重传
+快速恢复
+缓存策略: 可分为 强缓存 和 协商缓存
+
+get : 缓存 、请求长度受限 、会被历史保存记录
+无副作用(不修改资源)，幂等(请求次数与资源无关)的场景
+post : 安全 、大数据 、更多编码类型
+Websocket 是⼀个 持久化的协议： 基于 http ， 服务端可以 主动 push
+TCP三次握手：客户端发送syn 进入syn——end 服务器接收syn syn+ack syn——rev 客户端发送 ack established状态
+客户端：fin  服务端 ack  服务端ck+fin  客户端 ack
+
+
+node的loop：timer（ 执行到期的 setTimeout / setInterval 队列回调）、I/O 阶段: 执行上轮循环残流的 callbac idle , prepare poll  check（setImmediate）  close callbacks
+
+防范XSS攻击：csp 
+csrf：设置白名单，不被第三方网站请求
+
+XSS（跨站脚本攻击）——「菜单投毒」： ‌输入过滤‌： 将特殊字符转为安全文本（如 < → &lt;），防止浏览器误解析为代码 设置 HttpOnly 属性，禁止 JavaScript 读取 Cookie（锁死保险箱 限制页面只加载可信来源的脚本（指定安全供应商白名单） http-equiv
+
+CSRF（跨站请求伪造）——「伪造签名」：用户登录银行网站后，‌未退出时访问恶意网站‌
+恶意网站‌伪造转账请求‌（骗子假冒你的签名写支票）
+浏览器自动携带银行 Cookie 发送请求（银行误认是你本人操作）
+
+graph LR
+A[用户登录银行] --> B[Cookie存于浏览器]
+C[用户点击恶意链接] --> D[恶意网站伪造转账请求]
+D --> E[浏览器自动携带Cookie发送请求]
+E --> F[银行执行转账]
+
+token：类似支票附动态密码
+cookie；SameSite=Stric 禁止第三方网站获取cookie
+
+一、HTTP 1.0：单次送货，效率最低
+HTTP 1.1：一趟多送，但必须排队：请求必须按顺序处理（快递车卸货必须排队），前一个请求卡住 
+HTTP 2.0：并行装卸，智能打包 二进制帧 头部压缩：HPACK 压缩
+
+
+
+
+
+5、框架相关
+vue： 双向绑定 拦截getter setter  vue2是Object.defineProperty ( vue) vue3是proxy
+
+vdom：dom用js对象表示，render函数转为真实dom，diff比较到patch，然后patch触发re-render
+减少浏览器的重绘及回流。
+为了解耦 HTML 依赖。 可以渲染到dom以外的平台
+vue是双向数据流，react是单向。vue 的 vdom 是追踪每个组件的依赖关系，不会渲染整
+个组件树， react 每当应该状态被改变时，全部子组件都会 re-render
+
+ nextTick：最新的dom结构 mincrotasks  setImmediate setTimeout
+
+
+
+
+

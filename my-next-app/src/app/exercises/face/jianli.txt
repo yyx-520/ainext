@@ -1,0 +1,53 @@
+// 简历技术点透彻：
+// 1、低代码平台：
+//  涉及工程化（webpack（rollup）：
+// webpack性能调优实践：
+// 输出esm模块 利用tree shaking
+// 使用代码分割和动态载入import() 实现懒加载
+// 上面webpack是构建分包 chuncks（运行时加载依赖，尽量减小bundel体积）
+
+// 实际项目例子：h5：在发布服务里面，node实现。将容器代码分包打包，为app.js和其他chunks，动态加载chunks。,其他公共依赖单独发布为cdn资源引入提前引入（可做离线缓存，公共模块（如工具函数）被多次访问时，浏览器缓存可重复利用）。懒加载加入其他组件js文件。
+// native：原理大差不差
+// 思路来自于webpack的分包和懒加载
+
+// 构建工具去塞入scpit加载chunks
+
+// 替换为rollup区别：
+// 自动支持treeshaking
+// 更精简，配置简单
+// src/app/exercises/studycase/nodestudy.ts npm发布流程：
+// 1、流程：创建仓库->工程化配置（src源码、dist构建输出（配置.npmignore）、tests（单元测试）、.eslintrc.js、.babelrc、rollup.config.ts、tsconfig.json、package.json文件（必须有name。version字段，并且private不为true））
+// 2、发布脚本：npm version patch/minor/major 默认会上传整个项目（除忽略项）。推荐用 files 字段[dist cjs esm]或 .npmignore 精确控制上传内容。
+// 脚手架：最佳实践
+// b端平台：dsl协议+预览umd模块实时预览
+// node服务（发布服务）
+// c端csr渲染服务：，模版 + 容器组件（可以做懒加载等））
+// 2、稳定性：组件规范参考sentry实现了errorbunday：
+// 思考了巡检工具，其实就是大json数据处理。考虑接入ai。
+// 3、AI驱动效能提升：1、智能搭建：前端js、后段java，建立模版库，利用java调用llm sdk，标注模版和关键词匹配，后训练模型，然后输出模块。运营二次编辑。遇到的问题，promote调优；标注工作太多。所以前期只是用了大概10个模块，覆盖主要场景，例如外卖、医药等。后续可持续思考怎么泛化模型的能力。
+// 2 转换工具，其实原理类似，大模型完成通用逻辑转换，例如vue的命令api或者组合式api转换为react的hooks。template转换为tsx等，然后麻烦的是工具函数的映射，例如我们封装出来的定位函数、错误上报、跳转函数等，需要自己构建映射表给大模型。也是目前只支持了部分。需要人工介入。3 tt这个工具比较有意思，node服务去抓取tt内容，然后调用大模型sdk去分析tt内容，输出内容，然后再让大模型识别问题解决方案输出，循环调用大模型。
+// 4、工程化与性能优化：
+//  预渲染：使用pubpeteer抓取：const puppeteer = require('puppeteer'); 研究了公司口径，对比各个方案优缺。渲染分包
+
+// (async () => {
+//   const browser = await puppeteer.launch();
+//   const page = await browser.newPage();
+//   await page.goto('http://localhost:3000'); // 你的前端地址
+//   await page.waitForSelector('#app'); // 等待 app 节点渲染
+//   const html = await page.$eval('#app', el => el.innerHTML);
+//   // 将 html 保存到后端数据库或文件
+//   await browser.close();
+// })();
+// puppeteer最佳实践：？
+// 预渲染可抓取出首页页面，和受屏需要加载的组件，我一起打包给后端，后端会在html文件中返回给我，然后容器渲染首屏组件，然后下拉监听，到底部，自动触发其他组件加。（添加scrpit标签）
+// lighthouse最佳实践？
+
+// h5转rn：推送原生研发一起实现分bundle加载，减小包体积，同时用懒加载减少首屏网络请求。
+// bundle 本质是“打包后可直接加载和执行的 JS 文件”，格式和分发方式可以多样。具体格式（ESM/CJS/UMD）取决于你的打包配置和运行环境需求
+// Web 前端常用 UMD、ESM、IIFE。
+// Node.js 常用 CJS、ESM。
+// React Native 通常是 Metro 打包生成的专用 bundle（不是标准 ESM/CJS/UMD，但本质是 JS 文件）。
+
+// 额外技能：
+// Next.js SSR最小实践
+
